@@ -30,7 +30,7 @@ placeholderToggle() {
                 <h1 className="heading">Pogoda</h1>
                 <h2 className="heading-secondary">Sprawdź pogodę w swoim mieście</h2>
                 <input ref="input" className="input" placeholder={this.state.isInputSelected ? '' : 'Wpisz miasto'} onClick={() => this.placeholderToggle()} value={this.props.value}></input>
-                <Button >Wyślij</Button>
+                <Button onClickHandle={this.props.onClickHandle}>Wyślij</Button>
             </div>
 
         );
