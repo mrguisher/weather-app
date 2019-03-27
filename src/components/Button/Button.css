@@ -1,0 +1,19 @@
+/* BUTTON */
+
+.button {
+    border-radius: 8px;
+    border: 2px solid rgb(247, 172, 33);
+    background-color: transparent;
+    color: white;
+    padding: .5rem 1.5rem;
+    margin-top: 3rem;
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  .button:focus {
+    outline: none;
+  }
+  .button:hover {
+    background-color: rgb(247, 172, 33);
+  }
