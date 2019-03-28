@@ -9,32 +9,48 @@ class App extends Component {
     
     this.state = {
         whichPage: 'main',
+        classToggle: false,
    
+        city: ''
     
     };
     } 
 
+    classToggleHandle = () => {
+      this.setState({classToggle: !this.state.classToggle});
+    }
     changeCard = () => {
-      this.state.whichPage === 'result' ? this.setState({whichPage: 'main'}) : this.setState({whichPage: 'result'})
+        this.classToggleHandle();
+        setTimeout(() => {
+          this.state.whichPage === 'result' ? this.setState({whichPage: 'main'}) : this.setState({whichPage: 'result'});
+        },
+        1000);
     }
     searchButton = () => {
-      this.changeCard();
+      this.classToggleHandle();
+      this.changeCard()
     }
 
 
   render() {
     return (
       <div>
-        <Card 
-          className={this.state.whichPage === 'main' ? 'box' : 'hidden'} 
-          onClickHandle={this.searchButton}
 
-          />
-        <ResultCard 
-          className={this.state.whichPage === 'main' ? 'hidden' : 'box'} 
-          onClickHandle={this.changeCard}
-            
-          />
+        {this.state.whichPage === "main" ? (
+          <Card 
+            ref="card"
+            className={this.state.classToggle ? "fadeOut box " : "box"}
+            onClickHandle={this.searchButton}
+
+            />
+        ) : (
+          <ResultCard 
+            ref="result_card"
+            className={this.state.classToggle ? "box result-card-box" : "fadeOut box result-card-box "} 
+            onClickHandle={this.changeCard}
+
+            />
+        )}
 
       </div>
     );
