@@ -1,0 +1,15 @@
+  .temperature-img-small {
+    width: 40px;
+    height: 40px;
+  }
+  .temp-small-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2rem;
+  }
+  .temp-small-item {
+    font-size: 1rem;
+    margin: .5rem;
+  }
