@@ -51,12 +51,9 @@ class App extends Component {
         .then((jsonData) => {
   
           if (jsonData.cod === '200') {
-  
-           
             this.setState({city: input.value})
             this.setState({json: jsonData})
             this.changeCard();
-        
           } else {
               input.className = "input red";
               input.value = "Nie znaleziono miasta";
@@ -87,8 +84,6 @@ class App extends Component {
             className={this.state.classToggle ? "box result-card-box" : "fadeOut box result-card-box "} 
             onClickHandle={this.changeCard}
             cityName={this.state.city.toUpperCase()}
-
-            // current_humidity
             json={this.state.json}
             />
         )}

@@ -5,6 +5,8 @@
     justify-content: space-evenly;
     max-width: 80vw;
     margin: 0 auto;
+    transition: all .3s;
+    
 }
 .temperature-large_container {
     display: flex;
@@ -18,7 +20,8 @@
   }
   .temperature-img {
     width: 70px;
-    height: 70px;
+    height: 50px;
+    margin-left: 2rem;
   }
   .temperature-large {
     font-size: 5rem;
@@ -32,9 +35,11 @@
     margin-bottom: .5rem;
   }
   .heading-results {
+    font-size: 4rem;
     margin-bottom: 2rem;
     margin-top: 0;
     text-align: center;
+    font-weight: 200;
   }
   .togggle-days_container {
 
@@ -44,7 +49,7 @@
     width: 50%;
     height: 30px;
     margin: 0 auto;
-    margin-top: 60px;
+    margin-top: 2rem;
   }
   .toggle-days {
     font-size: 1rem;
@@ -63,9 +68,17 @@
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
-    width: 30%;
+    width: 30vw;
   }
   .left-container {
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
+  }
+
+  .margin-top {
+    margin-top: 6rem;
+  }
+  .hidden {
+    /* display: none; */
   }
