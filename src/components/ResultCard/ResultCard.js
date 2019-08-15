@@ -27,9 +27,9 @@ import NextDays from '../NextDays/NextDays'
   
     };
     this.dataManager = this.dataManager.bind(this);
-    this.day1 = new Array();
-    this.day2 = new Array();
-    this.day3 = new Array();
+    this.day1 = [];
+    this.day2 = [];
+    this.day3 = [];
 
     this.round = this.round.bind(this);
     this.calculate = this.calculate.bind(this);
