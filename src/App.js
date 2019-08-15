@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 import Card from './components/Card/Card';
 import ResultCard from './components/ResultCard/ResultCard.js';
+import Spinner from './components/Spinner/Spinner';
+import Button from './components/Button/Button';
+
+
 
 class App extends Component {
   constructor() {
@@ -12,80 +16,84 @@ class App extends Component {
         classToggle: false,
 
         json: '',
-   
         city: ''
     
     };
     } 
 
     // change cards and fade out
-    classToggleHandle = () => {
-      this.setState({classToggle: !this.state.classToggle});
-    }
+   
     changeCard = () => {
-      this.classToggleHandle();
-      setTimeout(() => {
-        this.state.whichPage === 'result' ? this.setState({whichPage: 'main'}) : this.setState({whichPage: 'result'});
-      },
-      1000);
+      this.setState({classToggle: !this.state.classToggle});
+      setTimeout(() => {this.state.whichPage === 'inProgress' ? this.setState({whichPage: 'results'}) : this.setState({whichPage: 'main'})}, 500)
     }
 
     // fetchAPI function on click and on enter
     inputOnKeyPress = (e) => {
-      if(e.key === 'Enter') {this.fetchAPI()}
+      e.key === 'Enter' && this.fetchAPI();
     }
 
     fetchAPI = () => {
       const input = this.results.refs.input;
 
-      if (input.value.trim() !== '' && input.value.trim() !== 'Wpisz miasto') {
-      
+      if (input.value.trim() !== '') {
+        this.setState({whichPage: "inProgress"});
         fetch(
           'https://api.openweathermap.org/data/2.5/forecast?q=' +
           input.value +
             '&appid=ae76d0efed32d9f29c4d54a5738b80ca'
         )
         .then(function(response) {
-          return response.json();
+          if (response.ok === true) {
+            return response.json();
+          } 
         })
         .then((jsonData) => {
-  
-          if (jsonData.cod === '200') {
+          if (jsonData !== undefined) {
             this.setState({city: input.value})
             this.setState({json: jsonData})
             this.changeCard();
           } else {
-              input.className = "input red";
-              input.value = "Nie znaleziono miasta";
+            this.setState({classToggle: !this.state.classToggle});
+            setTimeout(() => {this.setState({whichPage: 'notFound'})}, 500)
+            
           }
-        })
+        }
+        )
       }
       else {
-        input.className = "input red";
-        input.value = "Wpisz miasto";
+        input.className = "input input-red";
+        input.placeholder = "Wpisz miasto";
     }
     }
     
-
   render() {
     return (
       <div>
-
-        {this.state.whichPage === "main" ? (
+        {this.state.whichPage === "main" && (
           <Card 
             ref={component => (this.results = component)}
             className={this.state.classToggle ? "fadeOut box " : "box"}
             onClickHandle={this.fetchAPI}
             inputOnKeyPress={this.inputOnKeyPress}
             />
-        ) : (
+        )}
+        
+        {this.state.whichPage === "results" && (
+          
           <ResultCard 
-            
-            className={this.state.classToggle ? "box result-card-box" : "fadeOut box result-card-box "} 
+            className={this.state.classToggle ? "box result-card-box" : "fadeOut box result-card-box "}
             onClickHandle={this.changeCard}
             cityName={this.state.city.toUpperCase()}
             json={this.state.json}
             />
+        )}
+        {this.state.whichPage === "inProgress" && <Spinner className={this.state.classToggle ? "fadeOutSpinner box sweet-loading'" : "box sweet-loading'"}></Spinner> }
+        {this.state.whichPage === "notFound" && (
+          <div className={this.state.classToggle ? "box not-found" : "fadeOut box not-found"}> Nie ma takiego miasta...
+            <Button onClickHandle={this.changeCard}>Powrót do wyszukiwania</Button>
+          </div>
+          
         )}
 
       </div>
