@@ -11,7 +11,7 @@ const override = css`
 export default class Spinner extends Component {
   render() {
     return (
-     <div className='box sweet-loading'>
+     <div className={this.props.className}>
      <MoonLoader
        css={override}
        sizeUnit={"px"}
