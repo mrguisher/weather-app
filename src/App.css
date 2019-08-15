@@ -22,6 +22,12 @@
   font-size: 6rem;
   font-weight: 200;
 }
+.not-found {
+  font-size: 3rem;
+  text-align: center;
+  
+}
+
 /* ACTIONS */
 
 .red {
@@ -36,5 +42,9 @@
 .fadeOut {
   opacity: 0;
   transition: opacity 500ms ease-out;
+}
+.fadeOutSpinner {
+  opacity: 0;
+  transition: opacity 200ms ease-out;
 }
 
