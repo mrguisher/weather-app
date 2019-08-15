@@ -5,13 +5,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: linear-gradient(to top, #2c3e50, #3498db);
-  
 }
 @font-face {
   font-family: 'Raleway';
   src: url("https://fonts.googleapis.com/css?family=Raleway:200,400,600");
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
