@@ -6,7 +6,6 @@
     max-width: 80vw;
     margin: 0 auto;
     transition: all .3s;
-    
 }
 .temperature-large_container {
     display: flex;
@@ -78,7 +77,4 @@
 
   .margin-top {
     margin-top: 6rem;
-  }
-  .hidden {
-    /* display: none; */
   }
