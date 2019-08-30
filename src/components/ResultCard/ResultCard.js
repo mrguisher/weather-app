@@ -23,17 +23,15 @@ import NextDays from '../NextDays/NextDays'
         'Pojutrze',
       ],
       isSingle: true,
-      
-  
     };
     this.dataManager = this.dataManager.bind(this);
+    this.days = ["day1", "day2", "day3"];
     this.day1 = [];
     this.day2 = [];
     this.day3 = [];
 
     this.round = this.round.bind(this);
     this.calculate = this.calculate.bind(this);
-
   }   
 
   componentDidMount() {
@@ -41,6 +39,7 @@ import NextDays from '../NextDays/NextDays'
   }
 
   displayDay = (a) => { 
+
     this.setState({isSingle: false});
 
     if (a === 0) {
@@ -50,6 +49,7 @@ import NextDays from '../NextDays/NextDays'
     } else {
       this.setState({currentDay: "day3"})
     }
+    setTimeout((x => window.scrollTo(0,document.body.scrollHeight)), 100)
   }
   
   calculate = (kelvin) => {
@@ -59,33 +59,34 @@ import NextDays from '../NextDays/NextDays'
     return Math.ceil(value);
   }
 
-
   dataManager = () => {
 
         const json = this.props.json;
         this.setState({jsonData: json});
 
         //  CURRENT WEATHER //
-
         this.setState({currPress: this.round(json.list[0].main.pressure)});
         this.setState({currHum: this.round(json.list[0].main.humidity)});
         this.setState({currTemp: this.calculate(json.list[0].main.temp)});
-        
-        this.setState({weatherID: json.list[0].weather[0].icon})
+
+        this.setState({weatherID: json.list[0].weather[0].icon});
 
         // 3-DAYS WEATHER //
+
+        // shorter version ??
+        
+        // [this.day1, this.day2, this.day3].map((day) => json.list.map((x) => x.dt_txt.slice(0, 10) === json.list[0].dt_txt.slice(0, 10) && day.push(x) && console.log))
 
         json.list.map((x) => x.dt_txt.slice(0, 10) === json.list[0].dt_txt.slice(0, 10) && this.day1.push(x));
         json.list.map((x) => x.dt_txt.slice(0, 10) !== json.list[0].dt_txt.slice(0, 10) && this.day2.push(x));
         json.list.map((x) => x.dt_txt.slice(0, 10) !== json.list[0].dt_txt.slice(0, 10) && this.day3.push(x));
-
   }
 
   render() {
     return (
 
         <div ref="resultBox" className={this.props.className}>
-            <div className="left-container">
+            <div className="main-container">
               <h1 className="heading-results">{this.props.cityName}</h1>
               <div className="temperature-large_container">
                 <div className="temperature-large">{this.state.currTemp}&deg;C</div>
@@ -98,12 +99,12 @@ import NextDays from '../NextDays/NextDays'
               
               <div className="togggle-days_container">
               
-              {[0,1,2].map((x) => <div className='toggle-days' onClick={() => this.displayDay(x)}>{this.state.dayName[x]}</div>)}
+              {[0,1,2].map((x) => <div className={this.state.currentDay === this.days[x] ? 'toggle-days toggle-days__active' : 'toggle-days'}  onClick={() => this.displayDay(x)}>{this.state.dayName[x]}</div>)}
               
               </div>
                   <Button onClickHandle={this.props.onClickHandle}>Powrót do wyszukiwania</Button>
             </div>
-            <div className={this.state.isSingle ? "hidden" : "temps_container" }>
+            <div className={this.state.isSingle ? "hidden" : "temps_container fadeIn" }>
 
               {this.state.currentDay === "day1" && this.day1.map((x) => <NextDays temp={this.calculate(x.main.temp)} imageSource={`http://openweathermap.org/img/w/${x.weather[0].icon}.png`} hour={x.dt_txt.slice(11,16)}/> )}
               {this.state.currentDay === "day2" && this.day2.map((x, i) => i < 8 && <NextDays temp={this.calculate(x.main.temp)} imageSource={`http://openweathermap.org/img/w/${x.weather[0].icon}.png`} hour={x.dt_txt.slice(11,16)} /> )}
