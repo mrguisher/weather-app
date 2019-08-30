@@ -69,7 +69,7 @@ class App extends Component {
     
   render() {
     return (
-      <div>
+      <React.Fragment>
         {this.state.whichPage === "main" && (
           <Card 
             ref={component => (this.results = component)}
@@ -82,7 +82,7 @@ class App extends Component {
         {this.state.whichPage === "results" && (
           
           <ResultCard 
-            className={this.state.classToggle ? "box result-card-box" : "fadeOut box result-card-box "}
+            className={this.state.classToggle ? "result-card-box" : "fadeOut result-card-box "}
             onClickHandle={this.changeCard}
             cityName={this.state.city.toUpperCase()}
             json={this.state.json}
@@ -96,7 +96,7 @@ class App extends Component {
           
         )}
 
-      </div>
+        </React.Fragment>
     );
   }
 }
