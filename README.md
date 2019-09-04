@@ -30,4 +30,5 @@ TBA:
 ## Features
 To run this project, go to the project directory and install it locally using npm:
 
-`$ npm install      $ npm start`
+`$ npm install`     
+`$ npm start`
