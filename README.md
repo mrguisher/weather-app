@@ -32,5 +32,6 @@ To run this project, go to the project directory and install it locally using np
 
 `
 $ npm install
+
 $ npm start
 `
