@@ -28,7 +28,8 @@ TBA:
 * add push notification, user could subsctibe to daily weather report
 * live search while typing
 ## Features
-To run this project, go to the project directory and install it locally using npm:
+To run this project:
+clone it, go to the project directory and install it locally using npm:
 
 `$ npm install`     
 `$ npm start`
