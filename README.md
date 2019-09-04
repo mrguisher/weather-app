@@ -29,6 +29,7 @@ TBA:
 * live search while typing
 ## Features
 To run this project, go to the project directory and install it locally using npm:
+
 `
 $ npm install
 $ npm start
