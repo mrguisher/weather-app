@@ -12,7 +12,8 @@ A 3-days weather forecast app built with React, fetch data from the OpenWeatherM
 * [Features](#features)
 
 ## General info
-App is based on two main components: main widget, including input and submit button, and result widget with 3-day forecast. If city doesn't exist in database, the  the Weather-app is designed with accordance to mobile-first approach and responsive to most common screen sizes.
+App is based on two main components: main widget, including input and submit button, and result widget with 3-day forecast. If city doesn't exist in database, the NotFound component is displayed.  
+Weather-app is designed with accordance to mobile-first approach and responsive to most common screen sizes.
 
 ## Screenshots
 ![mockup weather-app](/mockup/mockup.png)
