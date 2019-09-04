@@ -27,7 +27,7 @@ App is based on two main components: main widget, including input and submit but
 TBA:
 * add push notification, user could subsctibe to daily weather report
 * live search while typing
-## Features
+## Launch
 To run this project:
 clone it, go to the project directory and install it locally using npm:
 
